@@ -15,13 +15,12 @@ export function OnSubmitForm(props:any, navigate: any, event: FormEvent<HTMLForm
     const formJsonData = JsonFromFormEvent(event);
 
     BackendPOSTRequest(props, NEW_QUESTION_API, formJsonData, (response) => {
-        console.log(response);
         setLoading(false);
         navigate(QUESTION_URL);
     }, (error) => {
         console.error(error);
         setLoading(false);
-    })
+    });
 
     return false;
 }

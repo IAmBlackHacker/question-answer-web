@@ -3,7 +3,7 @@ import './App.css';
 import LoginPageComponent from "./main/components/login/LoginPage";
 import {Navigate, Route, Routes} from "react-router-dom";
 import {NEW_QUESTION_URL, QUESTION_URL} from "./main/constants/UrlConstant";
-import {QuestionDisplayComponent} from "./main/components/questions/QuestionDisplayComponent";
+import QuestionDisplayComponent from "./main/components/questions/QuestionDisplayComponent";
 import NewQuestionComponent from "./main/components/newquestion/NewQuestionComponent";
 import {Connector} from "./redux/Connector";
 

@@ -1,14 +1,30 @@
 import {UserPanel} from "../header/UserPanel";
 import HeaderComponent from "../header/HeaderComponent";
 import {NEW_QUESTION_URL, QUESTION_URL} from "../../constants/UrlConstant";
+import {useEffect, useState} from "react";
+import {BackendGETRequest, BackendPOSTRequest} from "../../webrequests/BackendRequest";
+import {QUESTION_API} from "../../constants/APIConstant";
+import {Connector} from "../../../redux/Connector";
 
-export function QuestionDisplayComponent() {
-    const data = [{
-        title: "This is a Title",
-        question: "This is a test question",
-        user: "User",
-        answers: [{}]
-    }]
+interface QuestionFormat {
+    question: string;
+    title?: string;
+    user?: string;
+}
+
+export function QuestionDisplayComponent(props: any) {
+    const [data, setData] = useState<QuestionFormat[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        BackendGETRequest(props, QUESTION_API, (response) => {
+            setData(response);
+            setLoading(false);
+        }, (error) => {
+            console.error(error);
+            setLoading(false);
+        });
+    }, []);
 
     return <div className={"flex-fill"}>
         <HeaderComponent button_name={"Ask a question"} link={NEW_QUESTION_URL} />
@@ -18,7 +34,7 @@ export function QuestionDisplayComponent() {
     </div>
 }
 
-export function PostComponent({title, question, user}: {title: string, question: string, user: string}) {
+function PostComponent({title, question, user}: {title?: string, question: string, user?: string}) {
     return <div className={"mb-3 rounded-5 bg-white p-3"}>
         <div className={"py-1"}>
             <h5 className={"fw-bold"}>{title}</h5>
@@ -35,3 +51,5 @@ export function PostComponent({title, question, user}: {title: string, question:
         </div>
     </div>
 }
+
+export default Connector(QuestionDisplayComponent);
