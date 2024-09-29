@@ -17,15 +17,16 @@ class QuestionReadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ['question', 'answers', 'creation_date']
+        fields = ['title', 'question', 'user', 'answers', 'creation_date']
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         # Convert creation_date to milliseconds
         representation['creation_date'] = int(instance.creation_date.timestamp() * 1000)
+        representation['user'] = instance.user.user.first_name + ' ' + instance.user.user.last_name
         return representation
 
 class QuestionWriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
-        fields = ['question']
+        fields = ['title', 'question']

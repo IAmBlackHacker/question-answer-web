@@ -11,7 +11,7 @@ function HeaderComponent({button_name, link}: {button_name: string, link: string
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container>
-                <Navbar.Brand href="#home">
+                <Navbar.Brand>
                     <UserPanel name={user.username} />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />

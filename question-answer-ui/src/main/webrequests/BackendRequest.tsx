@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {optionProvider} from './RequestConfig';
 import {FAILURE_STATUS, SUCCESS_STATUS} from '../constants/Constant';
+import {ResetUserDetails} from "../managers/UserManager";
 
 export function BackendGETRequest(
     props: any,
@@ -26,7 +27,7 @@ export function BackendGETRequest(
         })
         .catch(error => {
             error.url = URL;
-            OnError(error, failureCallback);
+            OnError(props, error, failureCallback);
         });
 }
 
@@ -54,12 +55,17 @@ export function BackendPOSTRequest(
         })
         .catch(error => {
             error.url = URL;
-            OnError(error, failureCallback);
+            OnError(props, error, failureCallback);
         });
 }
 
-function OnError(error: any, failureCallback: (error: any) => void) {
+function OnError(props: any, error: any, failureCallback: (error: any) => void) {
     console.error('[API CALL]:', error);
+
+    if(error.response !== undefined && error.response.status === 403) {
+        console.warn("Unauthorised");
+        ResetUserDetails(props);
+    }
 
     if (
         error.response !== undefined &&

@@ -8,8 +8,8 @@ import {Connector} from "../../../redux/Connector";
 
 interface QuestionFormat {
     question: string;
-    title?: string;
-    user?: string;
+    title: string;
+    user: string;
 }
 
 export function QuestionDisplayComponent(props: any) {
@@ -34,7 +34,7 @@ export function QuestionDisplayComponent(props: any) {
     </div>
 }
 
-function PostComponent({title, question, user}: {title?: string, question: string, user?: string}) {
+function PostComponent({title, question, user}: {title: string, question: string, user: string}) {
     return <div className={"mb-3 rounded-5 bg-white p-3"}>
         <div className={"py-1"}>
             <h5 className={"fw-bold"}>{title}</h5>
@@ -44,7 +44,7 @@ function PostComponent({title, question, user}: {title?: string, question: strin
         </div>
         <hr/>
         <div>
-            <h6 className={"fw-bold"}>Asked by:</h6>
+            <h5 className={"fw-bold small"}>Asked by:</h5>
             <div>
                 <UserPanel name={user} />
             </div>

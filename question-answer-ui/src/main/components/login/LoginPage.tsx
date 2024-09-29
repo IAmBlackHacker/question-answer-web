@@ -16,7 +16,7 @@ export function OnSubmitForm(props: Props, event: FormEvent<HTMLFormElement>, se
 
     BackendPOSTRequest(props, LOGIN_API, formJsonData, (response) => {
         SetToken(props, "Bearer " + response.access);
-        SetUserName(props, "Lokesh Bhoyar");
+        SetUserName(props, response.username);
         setLoading(false);
     }, (error) => {
         console.error(error);

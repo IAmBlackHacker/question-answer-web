@@ -11,7 +11,8 @@ class User(models.Model):
 
 class Question(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    question = models.CharField(max_length=100, blank=False, null=False)
+    title = models.CharField(max_length=200, blank=False, null=False)
+    question = models.CharField(max_length=600, blank=False, null=False)
     creation_date = models.DateTimeField(default=datetime.now)
     active = models.BooleanField(default=True)
 
