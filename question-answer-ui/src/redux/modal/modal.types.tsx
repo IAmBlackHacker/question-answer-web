@@ -1,0 +1,4 @@
+export const ModalActionTypes = {
+    SET_LOADING_SCREEN: 'SET_LOADING_SCREEN',
+    SET_ERROR_MODAL_SCREEN: 'SET_ERROR_MODAL_SCREEN'
+}

@@ -1,0 +1,37 @@
+import {UserPanel} from "../header/UserPanel";
+import HeaderComponent from "../header/HeaderComponent";
+import {NEW_QUESTION_URL, QUESTION_URL} from "../../constants/UrlConstant";
+
+export function QuestionDisplayComponent() {
+    const data = [{
+        title: "This is a Title",
+        question: "This is a test question",
+        user: "User",
+        answers: [{}]
+    }]
+
+    return <div className={"flex-fill"}>
+        <HeaderComponent button_name={"Ask a question"} link={NEW_QUESTION_URL} />
+        <div className={"container p-2"}>
+            {data.map((question, index) => <PostComponent key={"question_" + index} title={question.title} question={question.question} user={question.user} />)}
+        </div>
+    </div>
+}
+
+export function PostComponent({title, question, user}: {title: string, question: string, user: string}) {
+    return <div className={"mb-3 rounded-5 bg-white p-3"}>
+        <div className={"py-1"}>
+            <h5 className={"fw-bold"}>{title}</h5>
+        </div>
+        <div className={"py-1"}>
+            <p className={"m-0"}>{question}</p>
+        </div>
+        <hr/>
+        <div>
+            <h6 className={"fw-bold"}>Asked by:</h6>
+            <div>
+                <UserPanel name={user} />
+            </div>
+        </div>
+    </div>
+}
