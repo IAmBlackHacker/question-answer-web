@@ -23,7 +23,7 @@ class QuestionView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        questions = Question.objects.all()
+        questions = Question.objects.all().order_by('-creation_date')
 
         serializer = QuestionReadSerializer(questions, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

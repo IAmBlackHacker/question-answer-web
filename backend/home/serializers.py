@@ -27,9 +27,6 @@ class QuestionReadSerializer(serializers.ModelSerializer):
         # Convert creation_date to milliseconds
         representation['creation_date'] = int(instance.creation_date.timestamp() * 1000)
         representation['user'] = instance.user.user.first_name + ' ' + instance.user.user.last_name
-        sorted_answers = instance.answer_set.order_by('creation_date')
-        representation['answers'] = AnswerReadSerializer(sorted_answers, many=True).data
-
         return representation
 
 class QuestionWriteSerializer(serializers.ModelSerializer):
