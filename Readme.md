@@ -18,5 +18,7 @@ cd question-answer-ui
 yarn start
 ```
 
+Open link your browser to access the question answer ui http://localhost:3000
+
 ## Problem statement
 [Problem Statement Link](Problem.md)
