@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {BackendGETRequest, BackendPOSTRequest} from "../../webrequests/BackendRequest";
 import {QUESTION_API} from "../../constants/APIConstant";
 import {Connector} from "../../../redux/Connector";
+import {Spinner} from "react-bootstrap";
 
 interface QuestionFormat {
     question: string;
@@ -26,10 +27,17 @@ export function QuestionDisplayComponent(props: any) {
         });
     }, []);
 
-    return <div className={"flex-fill"}>
+    return <div className={"flex-fill d-flex flex-column"}>
         <HeaderComponent button_name={"Ask a question"} link={NEW_QUESTION_URL} />
-        <div className={"container p-2"}>
-            {data.map((question, index) => <PostComponent key={"question_" + index} title={question.title} question={question.question} user={question.user} />)}
+        <div className={"container p-2 flex-grow-1 overflow-scroll"}>
+            {
+                loading &&
+                <div className={"p-3 rounded m-4 d-flex align-items-center justify-content-center"}>
+                    <Spinner className={"me-2"}/> Loading Questions ...
+                </div>
+            }
+            {!loading && data.map((question, index) => <PostComponent key={"question_" + index} title={question.title}
+                                                          question={question.question} user={question.user}/>)}
         </div>
     </div>
 }
