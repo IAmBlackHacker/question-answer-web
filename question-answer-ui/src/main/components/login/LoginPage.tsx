@@ -36,7 +36,7 @@ function LoginPageComponent(props: Props) {
             <form className={"flex-grow-1 d-flex flex-column"} onSubmit={(event) => OnSubmitForm(props, event, setLoading)}>
                 <div className={"flex-grow-1 d-flex align-items-center flex-column"}>
                     <FormControl disabled={loading} placeholder={"Email"} name={"username"} className={"rounded-0 my-2 shadow-none"}/>
-                    <FormControl disabled={loading} placeholder={"Password"} name={"password"} className={"rounded-0 my-2 shadow-none"}/>
+                    <FormControl type={"password"} disabled={loading} placeholder={"Password"} name={"password"} className={"rounded-0 my-2 shadow-none"}/>
                 </div>
                 <div className={"text-center p-3"}>
                     <Button type={"submit"} className={"rounded-5 bg-primary w-25 fw-bold"} disabled={loading}>

@@ -11,8 +11,9 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .serializers import QuestionReadSerializer, QuestionWriteSerializer
+from .serializers import QuestionReadSerializer, QuestionWriteSerializer, CustomTokenObtainSerializer
 from .models import Question, User
 
 
@@ -34,6 +35,10 @@ class QuestionView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save(user=question_user)
         return  Response(serializer.data, status=status.HTTP_201_CREATED)
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainSerializer
+
 
 # def login(request):
 #     if request.method == 'POST':
