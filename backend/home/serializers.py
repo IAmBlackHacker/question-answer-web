@@ -7,7 +7,7 @@ from .models import Question, Answer
 class AnswerReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ['answer', 'creation_date']
+        fields = ['id', 'answer', 'creation_date']
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
@@ -20,7 +20,7 @@ class QuestionReadSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ['title', 'question', 'user', 'answers', 'creation_date']
+        fields = ['id', 'title', 'question', 'user', 'answers', 'creation_date']
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)

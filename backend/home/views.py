@@ -36,6 +36,11 @@ class QuestionView(APIView):
         serializer.save(user=question_user)
         return  Response(serializer.data, status=status.HTTP_201_CREATED)
 
+    def delete(self, request, question_id):
+        event = Question.objects.get(id=question_id)
+        event.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainSerializer
 

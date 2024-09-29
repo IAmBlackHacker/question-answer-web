@@ -32,7 +32,7 @@ export function QuestionDisplayComponent(props: any) {
         <div className={"container p-2 flex-grow-1 overflow-scroll"}>
             {
                 loading &&
-                <div className={"p-3 rounded m-4 d-flex align-items-center justify-content-center"}>
+                <div className={"p-3 rounded m-4 d-flex flex-fill align-items-center justify-content-center"}>
                     <Spinner className={"me-2"}/> Loading Questions ...
                 </div>
             }
